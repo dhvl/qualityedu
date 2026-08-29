@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, CheckCircle, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -10,8 +11,14 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-black text-lg shadow-md">
-                QE
+              <div className="relative w-10 h-10 flex items-center justify-center bg-white rounded-xl p-1 shadow-md">
+                <Image
+                  src="/logo.png"
+                  alt="QE&D Logo"
+                  width={36}
+                  height={36}
+                  className="object-contain"
+                />
               </div>
               <span className="font-black text-xl text-white tracking-tight">QE&D</span>
             </div>

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Award, BookOpen, GraduationCap, CheckCircle2, Phone, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,10 +68,17 @@ export default function Navbar() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Brand Logo */}
+          {/* Official Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-600/20 group-hover:scale-105 transition-transform">
-              QE
+            <div className="relative w-12 h-12 flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                alt="QE&D Logo"
+                width={52}
+                height={52}
+                className="object-contain group-hover:scale-105 transition-transform"
+                priority
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-black text-xl tracking-tight text-slate-900 leading-none group-hover:text-blue-600 transition-colors">
@@ -178,7 +186,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm shadow-blue-600/30 hover:shadow-md hover:shadow-blue-600/40 active:scale-98"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm shadow-blue-600/30 hover:shadow-md active:scale-98"
             >
               Contact Us
             </Link>

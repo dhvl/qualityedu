@@ -70,21 +70,21 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Official Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 flex items-center justify-center">
+            <div className="relative w-14 h-14 shrink-0 flex items-center justify-center overflow-hidden rounded-[4px]">
               <Image
                 src="/logo.png"
                 alt="QE&D Logo"
-                width={52}
-                height={52}
-                className="object-contain group-hover:scale-105 transition-transform"
+                width={60}
+                height={60}
+                className="object-contain rounded-[4px] group-hover:scale-105 transition-transform"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-black text-xl tracking-tight text-slate-900 leading-none group-hover:text-blue-600 transition-colors">
+              <span className="font-black text-2xl tracking-tight text-slate-900 leading-none group-hover:text-blue-600 transition-colors">
                 QE&D
               </span>
-              <span className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase mt-0.5">
+              <span className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase mt-1">
                 Quality Education & Deployment
               </span>
             </div>
@@ -99,47 +99,66 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Courses Dropdown */}
-            <div className="relative group" onMouseEnter={() => setCoursesOpen(true)} onMouseLeave={() => setCoursesOpen(false)}>
+            {/* Courses Dropdown with seamless hover bridge */}
+            <div
+              className="relative group py-2"
+              onMouseEnter={() => setCoursesOpen(true)}
+              onMouseLeave={() => setCoursesOpen(false)}
+            >
               <button
-                className="flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-blue-600 rounded-lg hover:bg-slate-50 transition-colors"
+                className={coursesOpen ? "flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors text-blue-600 bg-slate-50" : "flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors text-slate-700 hover:text-blue-600 hover:bg-slate-50"}
                 aria-expanded={coursesOpen}
+                onClick={() => setCoursesOpen(!coursesOpen)}
               >
                 <span>Courses</span>
-                <ChevronDown className={coursesOpen ? "w-4 h-4 text-blue-600 rotate-180 transition-transform duration-200" : "w-4 h-4 text-slate-400 transition-transform duration-200"} />
+                <ChevronDown className={coursesOpen ? "w-4 h-4 transition-transform duration-200 text-blue-600 rotate-180" : "w-4 h-4 transition-transform duration-200 text-slate-400"} />
               </button>
 
               {coursesOpen && (
-                <div className="absolute top-full left-0 w-80 lg:w-96 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 mt-1 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    Specialized Programs
-                  </div>
-                  <div className="space-y-1">
-                    {courses.map((course) => (
-                      <Link
-                        key={course.name}
-                        href={course.href}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/70 transition-colors group/item"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-bold text-slate-900 group-hover/item:text-blue-600 transition-colors">
-                            {course.name}
-                          </span>
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                            {course.badge}
-                          </span>
-                        </div>
-                        <span className="text-xs text-slate-500 line-clamp-1 mt-0.5">
-                          {course.desc}
-                        </span>
+                <div
+                  className="absolute top-full left-0 pt-1 w-80 lg:w-96 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                  onMouseEnter={() => setCoursesOpen(true)}
+                  onMouseLeave={() => setCoursesOpen(false)}
+                >
+                  <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 ring-1 ring-black/5">
+                    <div className="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                      <span>Specialized Programs</span>
+                      <Link href="/courses" className="text-[11px] font-semibold text-blue-600 hover:underline lowercase">
+                        View all
                       </Link>
-                    ))}
-                  </div>
-                  <div className="mt-2 pt-2 border-t border-slate-100 px-3 py-2 bg-slate-50 rounded-xl flex items-center justify-between">
-                    <span className="text-xs text-slate-600 font-medium">Need course counseling?</span>
-                    <Link href="/contact-us" className="text-xs font-bold text-blue-600 hover:underline">
-                      Speak with Mentor &rarr;
-                    </Link>
+                    </div>
+                    <div className="space-y-1">
+                      {courses.map((course) => (
+                        <Link
+                          key={course.name}
+                          href={course.href}
+                          onClick={() => setCoursesOpen(false)}
+                          className="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/70 transition-colors group/item"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-bold text-slate-900 group-hover/item:text-blue-600 transition-colors">
+                              {course.name}
+                            </span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                              {course.badge}
+                            </span>
+                          </div>
+                          <span className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                            {course.desc}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mt-2 pt-2 border-t border-slate-100 px-3 py-2 bg-slate-50 rounded-xl flex items-center justify-between">
+                      <span className="text-xs text-slate-600 font-medium">Need course counseling?</span>
+                      <Link
+                        href="/contact-us"
+                        onClick={() => setCoursesOpen(false)}
+                        className="text-xs font-bold text-blue-600 hover:underline"
+                      >
+                        Speak with Mentor &rarr;
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}

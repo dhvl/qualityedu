@@ -11,16 +11,16 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 flex items-center justify-center bg-white rounded-xl p-1 shadow-md">
+              <div className="relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden rounded-[4px]">
                 <Image
                   src="/logo.png"
                   alt="QE&D Logo"
-                  width={36}
-                  height={36}
-                  className="object-contain"
+                  width={48}
+                  height={48}
+                  className="object-contain rounded-[4px]"
                 />
               </div>
-              <span className="font-black text-xl text-white tracking-tight">QE&D</span>
+              <span className="font-black text-2xl text-white tracking-tight">QE&D</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               Quality Education & Deployment (since 2019). Empowering professionals with industry-recognized certifications in Six Sigma, Transaction Quality, and Career PowerUp Skills.

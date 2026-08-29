@@ -1,0 +1,16 @@
+# Block PHP Execution in Uploads Directory
+<Files *.php>
+deny from all
+</Files>
+<Files *.phtml>
+deny from all
+</Files>
+<Files *.php5>
+deny from all
+</Files>
+<Files *.php7>
+deny from all
+</Files>
+<Files *.php8>
+deny from all
+</Files>

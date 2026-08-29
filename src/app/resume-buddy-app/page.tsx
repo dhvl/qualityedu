@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, CheckCircle2, ArrowRight, Play, Star, ShieldCheck, UserCheck, Briefcase, GraduationCap } from "lucide-react";
+import { Sparkles, CheckCircle2, ArrowRight, Star, ShieldCheck, UserCheck, Briefcase, GraduationCap } from "lucide-react";
 
 export const metadata = {
   title: "Resume Buddy - Build Resumes That Matter | QE&D",
@@ -9,8 +9,8 @@ export const metadata = {
 };
 
 export default function ResumeBuddyAppPage() {
-  const fresherAppUrl = "https://script.google.com/macros/s/AKfycbytfggnVd7NmoFJcJh9bmeQtjCLAY4WhhwrQMnFXSglWPxzLe6N5bKESVOmxvPZ5VyLcQ/exec";
-  const experiencedAppUrl = "https://script.google.com/macros/s/AKfycbzSG1IwhDd-X9bjHepoc-QqUEjJ87AJQHDhn0sGSsZv2kqWS1CaomApIpZ4S6A6U2yLng/exec";
+  const fresherAppUrl = "/resume-buddy-app/freshers";
+  const experiencedAppUrl = "/resume-buddy-app/experienced";
 
   const benefits = [
     {
@@ -76,24 +76,20 @@ export default function ResumeBuddyAppPage() {
         </div>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto pt-2">
-        <a
+        <Link
           href={fresherAppUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="w-full sm:w-1/2 py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-black text-sm text-center shadow-lg shadow-emerald-500/20 hover:scale-102 transition-all flex items-center justify-center gap-2"
         >
           <GraduationCap className="w-4 h-4" />
-          <span>Freshers</span>
-        </a>
-        <a
+          <span>Freshers Portal</span>
+        </Link>
+        <Link
           href={experiencedAppUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="w-full sm:w-1/2 py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm text-center shadow-lg shadow-blue-600/30 hover:scale-102 transition-all flex items-center justify-center gap-2"
         >
           <Briefcase className="w-4 h-4" />
-          <span>Experienced</span>
-        </a>
+          <span>Experienced Portal</span>
+        </Link>
       </div>
     </div>
   );
@@ -117,26 +113,22 @@ export default function ResumeBuddyAppPage() {
               Stop guessing, start winning. Resume Buddy provides tailored resume optimization and review for all experience levels and industries. We give you expert feedback, a fully ATS-friendly resume, salary trends, and comprehensive interview prep. Get the advantage you need to secure your next role—let Resume Buddy do the work. Build Resumes that matter.
             </p>
 
-            {/* Quick Action Buttons */}
+            {/* Quick Action Buttons linking to in-app portal */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-              <a
+              <Link
                 href={fresherAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm shadow-xl shadow-emerald-500/20 hover:scale-102 transition flex items-center justify-center gap-2"
               >
                 <GraduationCap className="w-4 h-4" />
-                <span>Try Free: Freshers</span>
-              </a>
-              <a
+                <span>Launch: Freshers Portal</span>
+              </Link>
+              <Link
                 href={experiencedAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm shadow-xl shadow-blue-600/30 hover:scale-102 transition flex items-center justify-center gap-2"
               >
                 <Briefcase className="w-4 h-4" />
-                <span>Try Free: Experienced</span>
-              </a>
+                <span>Launch: Experienced Portal</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -158,7 +150,7 @@ export default function ResumeBuddyAppPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b, idx) => (
-              <div key={idx} className="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-md transition space-y-3">
+              <div key={idx} className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition space-y-3">
                 <div className="text-3xl">{b.icon}</div>
                 <h3 className="text-lg font-black text-slate-900">{b.title}</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">{b.desc}</p>
@@ -206,14 +198,12 @@ export default function ResumeBuddyAppPage() {
                   </div>
                 </div>
               </div>
-              <a
+              <Link
                 href={fresherAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block text-center py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition"
               >
-                Launch Free Audit &rarr;
-              </a>
+                Launch Free Portal &rarr;
+              </Link>
             </div>
 
             {/* Paid / Full Service */}
@@ -241,14 +231,12 @@ export default function ResumeBuddyAppPage() {
                   </div>
                 </div>
               </div>
-              <a
+              <Link
                 href={experiencedAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block text-center py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs shadow-lg transition"
               >
-                Get Full Optimization &rarr;
-              </a>
+                Launch Experienced Portal &rarr;
+              </Link>
             </div>
           </div>
 
@@ -268,7 +256,7 @@ export default function ResumeBuddyAppPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-6">
+              <div key={idx} className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-1 text-amber-400">
                     {[...Array(5)].map((_, i) => (

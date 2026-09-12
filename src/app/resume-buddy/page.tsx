@@ -1,14 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, CheckCircle2, ArrowRight, Star, ShieldCheck, Zap, TrendingUp, Users, Award, Briefcase, GraduationCap, MessageCircle, Play } from "lucide-react";
-
-export const metadata = {
-  title: "Resume Buddy - Get Instant AI Feedback | QE&D",
-  description: "Instant AI Powered Resumes. Get shortlisted, interviewed and hired 6x faster. Accurate, reliable, and 100% ATS friendly with free feedback.",
-};
+import { Sparkles, CheckCircle2, ArrowRight, Star, ShieldCheck, Zap, TrendingUp, Users, Award, Briefcase, GraduationCap, MessageCircle, Play, Sun, Moon } from "lucide-react";
 
 export default function ResumeBuddyDedicatedLandingPage() {
+  const [isDark, setIsDark] = useState(true);
+
   const steps = [
     {
       step: "01",
@@ -67,11 +66,17 @@ export default function ResumeBuddyDedicatedLandingPage() {
   const companies = ["Accenture", "Airbnb", "Amazon", "Cognizant", "HCL Tech", "Concentrix", "Genpact", "Wipro"];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
-      {/* Dedicated Resume Buddy Header */}
-      <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <div className={`min-h-screen transition-colors duration-300 flex flex-col justify-between ${
+      isDark ? "bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950" : "bg-slate-50 text-slate-900 selection:bg-cyan-200 selection:text-slate-900"
+    }`}>
+      {/* Dedicated Header with Theme Switcher */}
+      <header className={`sticky top-0 z-50 backdrop-blur-md border-b px-4 sm:px-8 py-3.5 flex items-center justify-between transition-colors ${
+        isDark ? "bg-slate-950/90 border-slate-800/80" : "bg-white/90 border-slate-200"
+      }`}>
         <Link href="/resume-buddy" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center overflow-hidden rounded-xl bg-slate-900 border border-slate-800 shadow-md group-hover:scale-105 transition-transform">
+          <div className={`relative w-10 h-10 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center overflow-hidden rounded-xl border shadow-md group-hover:scale-105 transition-transform ${
+            isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+          }`}>
             <Image
               src="/resume-buddy-logo.png"
               alt="Resume Buddy Logo"
@@ -82,22 +87,37 @@ export default function ResumeBuddyDedicatedLandingPage() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-none">
+            <span className={`font-black text-lg sm:text-xl tracking-tight leading-none ${isDark ? "text-white" : "text-slate-900"}`}>
               Resume Buddy
             </span>
-            <span className="text-[10px] font-semibold text-cyan-400 tracking-wider uppercase mt-0.5">
+            <span className="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase mt-0.5">
               By QE&D Career Labs
             </span>
           </div>
         </Link>
 
-        <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold">
-          <Link href="#trynow" className="text-slate-300 hover:text-white transition">
+        <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-semibold">
+          <Link href="#trynow" className={`transition hidden sm:inline ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900"}`}>
             Try Now
           </Link>
-          <Link href="/faqs" className="text-slate-300 hover:text-white transition hidden sm:inline">
+          <Link href="/faqs" className={`transition hidden sm:inline ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900"}`}>
             FAQs
           </Link>
+          
+          {/* Theme Switcher Button */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle Theme"
+            className={`p-2 rounded-xl border transition-all flex items-center gap-1.5 ${
+              isDark
+                ? "bg-slate-900 border-slate-700 text-amber-400 hover:bg-slate-800"
+                : "bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200"
+            }`}
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            <span className="text-[11px] font-bold hidden md:inline">{isDark ? "Light Mode" : "Dark Mode"}</span>
+          </button>
+
           <Link
             href="/resume-buddy-app/freshers"
             className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-black text-xs shadow-md shadow-emerald-500/20 transition"
@@ -109,25 +129,31 @@ export default function ResumeBuddyDedicatedLandingPage() {
 
       {/* Hero Section */}
       <main className="space-y-20 pb-20">
-        <section id="trynow" className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-800 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(6,182,212,0.15),transparent)]">
+        <section id="trynow" className={`relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b transition-colors ${
+          isDark 
+            ? "border-slate-800 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(6,182,212,0.15),transparent)]" 
+            : "border-slate-200 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(6,182,212,0.1),transparent)]"
+        }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
               <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-bold shadow-sm">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold border shadow-xs ${
+                  isDark ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : "bg-cyan-50 border-cyan-200 text-cyan-800"
+                }`}>
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
                   <span>Instant AI Powered Resumes — No Sign Up, No Subscription</span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                  Get Shortlisted, Interviewed & Hired <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">6x Faster</span>
+                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${isDark ? "text-white" : "text-slate-900"}`}>
+                  Get Shortlisted, Interviewed & Hired <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500">6x Faster</span>
                 </h1>
 
-                <div className="text-sm sm:text-base text-amber-400 font-black uppercase tracking-wider">
+                <div className={`text-sm sm:text-base font-black uppercase tracking-wider ${isDark ? "text-amber-400" : "text-amber-600"}`}>
                   Accurate. Reliable & 100% ATS Friendly
                 </div>
 
-                <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
+                <p className={`text-base sm:text-lg max-w-2xl font-normal leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
                   No sign up, No Subscription. Just Free Feedback. Resume Vs JD match, Keywords to add, Structural improvement tips, and personalized interview readiness.
                 </p>
 
@@ -141,24 +167,24 @@ export default function ResumeBuddyDedicatedLandingPage() {
                   </Link>
                   <Link
                     href="/resume-buddy-app/experienced"
-                    className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-slate-950 font-black text-sm shadow-xl shadow-cyan-500/20 hover:scale-102 transition flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-black text-sm shadow-xl shadow-cyan-500/20 hover:scale-102 transition flex items-center justify-center gap-2"
                   >
                     <Briefcase className="w-4 h-4" />
                     <span>Fix My Resume: Experienced</span>
                   </Link>
                 </div>
 
-                <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-medium">
+                <div className={`pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs font-medium ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>Free Diagnostic Scan</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>ATS Keyword Match</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>Instant Results</span>
                   </div>
                 </div>
@@ -166,35 +192,45 @@ export default function ResumeBuddyDedicatedLandingPage() {
 
               {/* Quick Hero Card */}
               <div className="lg:col-span-5">
-                <div className="bg-slate-900/90 rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-slate-800 space-y-6">
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div className={`rounded-3xl p-6 sm:p-8 shadow-2xl border space-y-6 ${
+                  isDark ? "bg-slate-900/90 text-white border-slate-800" : "bg-white text-slate-900 border-slate-200"
+                }`}>
+                  <div className={`flex items-center justify-between pb-4 border-b ${isDark ? "border-slate-800" : "border-slate-100"}`}>
                     <div>
-                      <span className="text-xs font-black uppercase text-cyan-400">ATS Diagnostic</span>
-                      <h3 className="text-xl font-black text-white">Resume Health Check</h3>
+                      <span className="text-xs font-black uppercase text-cyan-500">ATS Diagnostic</span>
+                      <h3 className={`text-xl font-black ${isDark ? "text-white" : "text-slate-900"}`}>Resume Health Check</h3>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30">
                       FREE
                     </span>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-300">
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                  <div className="space-y-3 text-xs">
+                    <div className={`p-3.5 rounded-xl border flex items-center justify-between ${
+                      isDark ? "bg-slate-950/80 border-slate-800 text-slate-300" : "bg-slate-50 border-slate-100 text-slate-700"
+                    }`}>
                       <span className="font-bold">Average Recruiter Screen Time</span>
-                      <span className="font-black text-rose-400">3.2 Seconds</span>
+                      <span className="font-black text-rose-500">3.2 Seconds</span>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                    <div className={`p-3.5 rounded-xl border flex items-center justify-between ${
+                      isDark ? "bg-slate-950/80 border-slate-800 text-slate-300" : "bg-slate-50 border-slate-100 text-slate-700"
+                    }`}>
                       <span className="font-bold">Resumes Rejected by ATS</span>
-                      <span className="font-black text-rose-400">75%+</span>
+                      <span className="font-black text-rose-500">75%+</span>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-800/40 flex items-center justify-between">
-                      <span className="font-bold text-emerald-300">Resume Buddy Match Advantage</span>
-                      <span className="font-black text-emerald-400">+400% Calls</span>
+                    <div className={`p-3.5 rounded-xl border flex items-center justify-between ${
+                      isDark ? "bg-emerald-950/40 border-emerald-800/40 text-emerald-300" : "bg-emerald-50 border-emerald-100 text-emerald-900"
+                    }`}>
+                      <span className="font-bold">Resume Buddy Match Advantage</span>
+                      <span className="font-black text-emerald-600 dark:text-emerald-400">+400% Calls</span>
                     </div>
                   </div>
 
                   <Link
                     href="/resume-buddy-app"
-                    className="block w-full text-center py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow transition border border-slate-700"
+                    className={`block w-full text-center py-3.5 px-4 rounded-xl font-bold text-xs shadow transition border ${
+                      isDark ? "bg-slate-800 hover:bg-slate-700 text-white border-slate-700" : "bg-slate-900 hover:bg-slate-800 text-white border-slate-900"
+                    }`}
                   >
                     Explore In-Depth Features &rarr;
                   </Link>
@@ -207,12 +243,12 @@ export default function ResumeBuddyDedicatedLandingPage() {
 
         {/* Social Proof */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">
+          <p className={`text-xs font-bold uppercase tracking-widest ${isDark ? "text-slate-500" : "text-slate-400"}`}>
             Used by Candidates Hired Across Top Global Firms
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-70 grayscale hover:grayscale-0 transition-all">
             {companies.map((c, i) => (
-              <span key={i} className="text-lg font-black text-slate-300">
+              <span key={i} className={`text-lg font-black ${isDark ? "text-slate-300" : "text-slate-700"}`}>
                 {c}
               </span>
             ))}
@@ -222,22 +258,26 @@ export default function ResumeBuddyDedicatedLandingPage() {
         {/* 3 Step Process */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Fix Your Resume in <span className="text-cyan-400">3 Simple Steps</span>
+            <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-slate-900"}`}>
+              Fix Your Resume in <span className="text-cyan-500">3 Simple Steps</span>
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
+            <p className={`text-sm sm:text-base ${isDark ? "text-slate-400" : "text-slate-600"}`}>
               Your resume is judged in 3.2 seconds. As a result, most candidates never make it past ATS filters.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {steps.map((s, idx) => (
-              <div key={idx} className="bg-slate-900/90 rounded-3xl p-8 border border-slate-800 shadow-sm space-y-4 text-center">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-300 font-black text-lg flex items-center justify-center mx-auto border border-cyan-500/30">
+              <div key={idx} className={`rounded-3xl p-8 border shadow-sm space-y-4 text-center ${
+                isDark ? "bg-slate-900/90 border-slate-800 text-slate-100" : "bg-white border-slate-200 text-slate-900"
+              }`}>
+                <div className={`w-12 h-12 rounded-2xl font-black text-lg flex items-center justify-center mx-auto border ${
+                  isDark ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" : "bg-cyan-100 text-cyan-800 border-cyan-200"
+                }`}>
                   {s.step}
                 </div>
-                <h3 className="text-xl font-black text-white">{s.title}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{s.desc}</p>
+                <h3 className={`text-xl font-black ${isDark ? "text-white" : "text-slate-900"}`}>{s.title}</h3>
+                <p className={`text-xs leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}>{s.desc}</p>
               </div>
             ))}
           </div>
@@ -261,25 +301,31 @@ export default function ResumeBuddyDedicatedLandingPage() {
         </section>
 
         {/* How Are We Different */}
-        <section className="bg-slate-900/60 border-t border-b border-slate-800/80 py-16">
+        <section className={`border-t border-b py-16 transition-colors ${
+          isDark ? "bg-slate-900/60 border-slate-800/80" : "bg-slate-100/80 border-slate-200"
+        }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="text-center space-y-3 max-w-2xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
+              <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-slate-900"}`}>
                 How Are We Different?
               </h2>
-              <p className="text-slate-400 text-sm">
+              <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>
                 We combine AI scanning speed with real Quality Assurance expertise.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {differentiators.map((d, idx) => (
-                <div key={idx} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-sm border border-cyan-500/30">
+                <div key={idx} className={`border rounded-2xl p-6 space-y-3 ${
+                  isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-sm"
+                }`}>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm border ${
+                    isDark ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" : "bg-cyan-50 text-cyan-700 border-cyan-200"
+                  }`}>
                     0{idx + 1}
                   </div>
-                  <h3 className="text-base font-bold text-white">{d.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{d.desc}</p>
+                  <h3 className={`text-base font-bold ${isDark ? "text-white" : "text-slate-900"}`}>{d.title}</h3>
+                  <p className={`text-xs leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}>{d.desc}</p>
                 </div>
               ))}
             </div>
@@ -287,7 +333,9 @@ export default function ResumeBuddyDedicatedLandingPage() {
             <div className="text-center pt-4">
               <Link
                 href="/resume-buddy-app"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-slate-950 font-black text-sm hover:bg-slate-100 transition shadow-lg"
+                className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-black text-sm transition shadow-lg ${
+                  isDark ? "bg-white text-slate-950 hover:bg-slate-100" : "bg-slate-900 text-white hover:bg-slate-800"
+                }`}
               >
                 <span>Try Now For Free</span>
                 <ArrowRight className="w-4 h-4" />
@@ -299,28 +347,30 @@ export default function ResumeBuddyDedicatedLandingPage() {
         {/* Testimonials */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-slate-900"}`}>
               Testimonials & Success Stories
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
+            <p className={`text-sm sm:text-base ${isDark ? "text-slate-400" : "text-slate-600"}`}>
               See how job seekers and hiring leaders rate Resume Buddy.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="bg-slate-900 border border-slate-800 rounded-3xl p-7 shadow-sm flex flex-col justify-between space-y-6">
+              <div key={idx} className={`border rounded-3xl p-7 shadow-sm flex flex-col justify-between space-y-6 ${
+                isDark ? "bg-slate-900 border-slate-800 text-slate-100" : "bg-white border-slate-200 text-slate-900"
+              }`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1 text-amber-400">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
+                  <p className={`text-xs leading-relaxed italic ${isDark ? "text-slate-300" : "text-slate-700"}`}>&ldquo;{t.quote}&rdquo;</p>
                 </div>
-                <div className="pt-4 border-t border-slate-800">
-                  <div className="font-bold text-white text-sm">{t.name}</div>
-                  <div className="text-xs text-cyan-400">{t.role}</div>
+                <div className={`pt-4 border-t ${isDark ? "border-slate-800" : "border-slate-100"}`}>
+                  <div className={`font-bold text-sm ${isDark ? "text-white" : "text-slate-900"}`}>{t.name}</div>
+                  <div className="text-xs text-cyan-600 dark:text-cyan-400">{t.role}</div>
                 </div>
               </div>
             ))}
@@ -330,35 +380,47 @@ export default function ResumeBuddyDedicatedLandingPage() {
         {/* Workflows */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-slate-900"}`}>
               Workflows
             </h2>
-            <p className="text-slate-400 text-sm">
+            <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>
               Explore how Resume Buddy delivers career results.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center mx-auto border border-cyan-500/30">
+            <div className={`p-6 rounded-2xl border space-y-2 ${
+              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-sm"
+            }`}>
+              <div className={`w-10 h-10 rounded-xl font-bold flex items-center justify-center mx-auto border ${
+                isDark ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" : "bg-cyan-50 text-cyan-700 border-cyan-200"
+              }`}>
                 <Play className="w-4 h-4 fill-current" />
               </div>
-              <h3 className="font-bold text-sm text-white">Resume Buddy Workflow</h3>
-              <p className="text-xs text-slate-400">Fast automated intake & scoring pipeline</p>
+              <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-slate-900"}`}>Resume Buddy Workflow</h3>
+              <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-500"}`}>Fast automated intake & scoring pipeline</p>
             </div>
-            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold flex items-center justify-center mx-auto border border-emerald-500/30">
+            <div className={`p-6 rounded-2xl border space-y-2 ${
+              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-sm"
+            }`}>
+              <div className={`w-10 h-10 rounded-xl font-bold flex items-center justify-center mx-auto border ${
+                isDark ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : "bg-emerald-50 text-emerald-700 border-emerald-200"
+              }`}>
                 <Play className="w-4 h-4 fill-current" />
               </div>
-              <h3 className="font-bold text-sm text-white">How to use your Premium Deliverables</h3>
-              <p className="text-xs text-slate-400">Applying your rewritten resume to job portals</p>
+              <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-slate-900"}`}>How to use your Premium Deliverables</h3>
+              <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-500"}`}>Applying your rewritten resume to job portals</p>
             </div>
-            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center mx-auto border border-purple-500/30">
+            <div className={`p-6 rounded-2xl border space-y-2 ${
+              isDark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-sm"
+            }`}>
+              <div className={`w-10 h-10 rounded-xl font-bold flex items-center justify-center mx-auto border ${
+                isDark ? "bg-purple-500/20 text-purple-300 border-purple-500/30" : "bg-purple-50 text-purple-700 border-purple-200"
+              }`}>
                 <Play className="w-4 h-4 fill-current" />
               </div>
-              <h3 className="font-bold text-sm text-white">How Resume Buddy Works</h3>
-              <p className="text-xs text-slate-400">Behind the scenes with QA coaching algorithms</p>
+              <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-slate-900"}`}>How Resume Buddy Works</h3>
+              <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-500"}`}>Behind the scenes with QA coaching algorithms</p>
             </div>
           </div>
         </section>
@@ -366,7 +428,7 @@ export default function ResumeBuddyDedicatedLandingPage() {
         {/* Repeating CTA */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-cyan-950 via-slate-900 to-blue-950 rounded-3xl p-8 sm:p-12 text-white text-center space-y-6 shadow-2xl border border-cyan-800/40">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight max-w-2xl mx-auto text-white">
               Ready to Transform Your Resume And Career?
             </h2>
             <p className="text-cyan-200 text-sm max-w-xl mx-auto font-normal">
@@ -399,9 +461,13 @@ export default function ResumeBuddyDedicatedLandingPage() {
       </main>
 
       {/* Dedicated Resume Buddy Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-10 px-4 sm:px-8 text-slate-500 text-xs text-center space-y-4">
+      <footer className={`border-t py-10 px-4 sm:px-8 text-xs text-center space-y-4 transition-colors ${
+        isDark ? "bg-slate-950 border-slate-900 text-slate-500" : "bg-white border-slate-200 text-slate-500"
+      }`}>
         <div className="flex items-center justify-center gap-3">
-          <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center">
+          <div className={`relative w-8 h-8 rounded-lg overflow-hidden border flex items-center justify-center ${
+            isDark ? "bg-slate-900 border-slate-800" : "bg-slate-100 border-slate-200"
+          }`}>
             <Image
               src="/resume-buddy-logo.png"
               alt="Resume Buddy Logo"
@@ -410,17 +476,17 @@ export default function ResumeBuddyDedicatedLandingPage() {
               className="object-contain"
             />
           </div>
-          <span className="font-black text-sm text-slate-300">Resume Buddy</span>
+          <span className={`font-black text-sm ${isDark ? "text-slate-300" : "text-slate-800"}`}>Resume Buddy</span>
         </div>
         <p>© Quality Education And Deployment Pvt Ltd. All Rights Reserved.</p>
-        <div className="flex items-center justify-center gap-6 text-slate-400 pt-1">
-          <Link href="/privacy-policy" className="hover:text-white transition">
+        <div className="flex items-center justify-center gap-6 pt-1">
+          <Link href="/privacy-policy" className={`transition ${isDark ? "text-slate-400 hover:text-white" : "text-slate-600 hover:text-slate-900"}`}>
             Privacy Policy
           </Link>
-          <Link href="/terms-and-conditions" className="hover:text-white transition">
+          <Link href="/terms-and-conditions" className={`transition ${isDark ? "text-slate-400 hover:text-white" : "text-slate-600 hover:text-slate-900"}`}>
             Terms and Conditions
           </Link>
-          <Link href="/refund-and-cancellation" className="hover:text-white transition">
+          <Link href="/refund-and-cancellation" className={`transition ${isDark ? "text-slate-400 hover:text-white" : "text-slate-600 hover:text-slate-900"}`}>
             Refund and Cancellation
           </Link>
         </div>
@@ -432,12 +498,14 @@ export default function ResumeBuddyDedicatedLandingPage() {
           href="https://wa.me/918886991370?text=Hi!%20I%20need%20help%20with%20my%20resume."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 bg-slate-900 border border-slate-700 text-white px-4 py-2.5 rounded-full shadow-2xl hover:shadow-cyan-500/20 transition-all group-hover:scale-105"
+          className={`flex items-center gap-2.5 border px-4 py-2.5 rounded-full shadow-2xl transition-all group-hover:scale-105 ${
+            isDark ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200 text-slate-900"
+          }`}
         >
           <div className="w-7 h-7 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0">
             <MessageCircle className="w-4 h-4 fill-current" />
           </div>
-          <span className="text-xs font-bold hidden sm:inline text-slate-200">Need Help?</span>
+          <span className="text-xs font-bold hidden sm:inline">Need Help?</span>
         </a>
       </aside>
     </div>

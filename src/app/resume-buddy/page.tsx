@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, CheckCircle2, ArrowRight, Star, ShieldCheck, Zap, TrendingUp, Users, Award, Briefcase, GraduationCap, MessageCircle } from "lucide-react";
+import { Sparkles, CheckCircle2, ArrowRight, Star, ShieldCheck, Zap, TrendingUp, Users, Award, Briefcase, GraduationCap, MessageCircle, Play } from "lucide-react";
 
 export const metadata = {
   title: "Resume Buddy - Get Instant AI Feedback | QE&D",
@@ -50,24 +50,37 @@ export default function ResumeBuddyLandingPage() {
     {
       quote: "Resume Buddy made the whole resume-building process so much easier. The AI suggestions were spot-on, and I loved how it tailored everything to my job profile. I landed more interviews within weeks—highly recommend it to anyone job hunting!",
       name: "Saurav C",
-      role: "Manager"
+      role: "Manager",
+      img: "/uploads/2025/11/Screenshot-2025-11-24-at-10.31.42-AM.png"
     },
     {
       quote: "My resume wasn&apos;t working until Resume Buddy professionally structured it. I immediately started getting better calls and job offers. They made my experience stand out. Highly recommend!",
       name: "Esha Dhawan",
-      role: "Returning to work"
+      role: "Returning to work",
+      img: "/uploads/2025/11/WhatsApp-Image-2025-11-26-at-13.30.10.jpeg"
     },
     {
       quote: "As a recruiter, the optimized resume made my job noticeably easier. The structure was clean, the achievements were clear and quantified, and the candidate’s strengths were highlighted so effectively that I could assess their fit within seconds.",
       name: "Garima Gupta",
-      role: "HR Strategist and Leader"
+      role: "HR Strategist and Leader",
+      img: "/uploads/2025/11/Screenshot-2025-11-26-at-9.44.56-PM.png"
     }
   ];
 
   const companies = ["Accenture", "Airbnb", "Amazon", "Cognizant", "HCL Tech", "Concentrix", "Genpact", "Wipro"];
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-20 pb-20 relative">
+      {/* Top Anchor & Sub Nav */}
+      <div id="trynow" className="bg-slate-900 border-b border-slate-800 text-xs py-2 px-4 text-center text-slate-300 flex items-center justify-center gap-6">
+        <Link href="/resume-buddy#trynow" className="hover:text-white font-semibold">
+          Try Resume Buddy
+        </Link>
+        <Link href="/faqs" className="hover:text-white font-semibold">
+          FAQs
+        </Link>
+      </div>
+
       {/* Hero Banner */}
       <section className="relative bg-gradient-to-b from-blue-950 via-slate-900 to-slate-950 text-white py-16 lg:py-24 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,8 +96,12 @@ export default function ResumeBuddyLandingPage() {
                 Get Shortlisted, Interviewed & Hired <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">6x Faster</span>
               </h1>
 
+              <div className="text-sm sm:text-base text-amber-300 font-bold uppercase tracking-wider">
+                Accurate. Reliable & 100% ATS Friendly
+              </div>
+
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
-                Accurate. Reliable & 100% ATS Friendly. Resume vs Job Description match, keywords to add, structural improvement tips, and personalized interview readiness.
+                No sign up, No Subscription. Just Free Feedback. Resume Vs JD match, Keywords to add, Improvement tips and more.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
@@ -179,17 +196,17 @@ export default function ResumeBuddyLandingPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Fix Your Resume in <span className="text-emerald-600">3 Simple Steps</span>
+            Fix Your Resume in <span className="text-cyan-600">3 Simple Steps</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
-            Your resume is judged in 3.2 seconds. Ensure you pass ATS filters and stand out to human decision-makers.
+            Your resume is judged in 3.2 seconds. As a result, most candidates never make it past ATS filters.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((s, idx) => (
             <div key={idx} className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-4 text-center">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 font-black text-lg flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-800 font-black text-lg flex items-center justify-center mx-auto">
                 {s.step}
               </div>
               <h3 className="text-xl font-black text-slate-900">{s.title}</h3>
@@ -198,12 +215,19 @@ export default function ResumeBuddyLandingPage() {
           ))}
         </div>
 
-        <div className="text-center pt-2">
+        <div className="text-center pt-2 flex flex-wrap items-center justify-center gap-4">
           <Link
-            href="/resume-buddy-app"
+            href="/resume-buddy-app/freshers"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm shadow-md transition"
           >
-            <span>Start Now For Free</span>
+            <span>Start Now For Free: Freshers</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/resume-buddy-app/experienced"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm shadow-md transition"
+          >
+            <span>Start Now For Free: Experienced</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -232,6 +256,16 @@ export default function ResumeBuddyLandingPage() {
               </div>
             ))}
           </div>
+
+          <div className="text-center pt-4">
+            <Link
+              href="/resume-buddy-app"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-slate-950 font-black text-sm hover:bg-slate-100 transition shadow-lg"
+            >
+              <span>Try Now For Free</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -239,7 +273,7 @@ export default function ResumeBuddyLandingPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Success Stories & User Feedback
+            Testimonials & Success Stories
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
             See how job seekers and hiring leaders rate Resume Buddy.
@@ -266,6 +300,42 @@ export default function ResumeBuddyLandingPage() {
         </div>
       </section>
 
+      {/* Workflows */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center space-y-3 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Workflows
+          </h2>
+          <p className="text-slate-600 text-sm">
+            Explore how Resume Buddy delivers career results.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 font-bold flex items-center justify-center mx-auto">
+              <Play className="w-4 h-4 fill-current" />
+            </div>
+            <h3 className="font-bold text-sm text-slate-900">Resume Buddy Workflow</h3>
+            <p className="text-xs text-slate-500">Fast automated intake & scoring pipeline</p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mx-auto">
+              <Play className="w-4 h-4 fill-current" />
+            </div>
+            <h3 className="font-bold text-sm text-slate-900">How to use your Premium Deliverables</h3>
+            <p className="text-xs text-slate-500">Applying your rewritten resume to job portals</p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-bold flex items-center justify-center mx-auto">
+              <Play className="w-4 h-4 fill-current" />
+            </div>
+            <h3 className="font-bold text-sm text-slate-900">How Resume Buddy Works</h3>
+            <p className="text-xs text-slate-500">Behind the scenes with QA coaching algorithms</p>
+          </div>
+        </div>
+      </section>
+
       {/* Repeating CTA with Portal Links */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-12 text-white text-center space-y-6 shadow-xl">
@@ -273,7 +343,7 @@ export default function ResumeBuddyLandingPage() {
             Ready to Transform Your Resume And Career?
           </h2>
           <p className="text-blue-200 text-sm max-w-xl mx-auto font-normal">
-            Build Resumes that matter with the No 1. Resume reviewer and optimizer platform.
+            Build Resumes that matter with the No 1. Resume reviewer and optimizer platform. Resume Buddy is your one stop shop for career success.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 max-w-md mx-auto">
             <Link
@@ -299,6 +369,21 @@ export default function ResumeBuddyLandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp CTA */}
+      <aside className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+        <a
+          href="https://wa.me/918886991370?text=Hi!%20I%20need%20help%20with%20my%20resume."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2.5 bg-white border border-slate-200 text-slate-800 px-4 py-2.5 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0">
+            <MessageCircle className="w-5 h-5 fill-current" />
+          </div>
+          <span className="text-xs font-bold hidden sm:inline text-slate-900">Need Help?</span>
+        </a>
+      </aside>
     </div>
   );
 }
